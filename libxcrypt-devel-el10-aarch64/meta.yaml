@@ -1,0 +1,52 @@
+package:
+  name: libxcrypt-devel-el10-aarch64
+  version: 4.4.36
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/10.0/AppStream/aarch64/os/Packages/l/libxcrypt-devel-4.4.36-10.el10.aarch64.rpm
+    sha256: c229af93c727a5724fa94bc016349c10f6a645a06332de49b071f4a973dab7d6
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.39.*
+    - libxcrypt-el10-aarch64 ==4.4.36 *_{{ build_number }}
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/include/crypt.h
+    - test -f ${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/lib64/libcrypt.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags libcrypt
+    - pkg-config --cflags libxcrypt
+
+# LICENSING says LGPL-2.1-or-later, COPYING.LIB is that license
+about:
+  home: https://github.com/besser82/libxcrypt
+  license: LGPL-2.1-or-later  # LGPL-2.1-or-later AND BSD-3-Clause AND BSD-2-Clause AND BSD-2-Clause-FreeBSD AND 0BSD AND CC0-1.0 AND LicenseRef-Fedora-Public-Domain
+  license_family: LGPL
+  license_file:
+    - AUTHORS
+    - LICENSING
+    - COPYING.LIB
+  summary: (CDT) Development files for libxcrypt
+  description: |
+    The libxcrypt-devel package contains libraries and header files for
+    developing applications that use libxcrypt.
+  doc_url: https://github.com/besser82/libxcrypt
+  dev_url: https://github.com/besser82/libxcrypt
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

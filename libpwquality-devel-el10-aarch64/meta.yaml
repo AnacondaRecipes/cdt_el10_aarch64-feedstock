@@ -1,0 +1,51 @@
+package:
+  name: libpwquality-devel-el10-aarch64
+  version: 1.4.5
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/10.0/devel/aarch64/os/Packages/l/libpwquality-devel-1.4.5-12.el10.aarch64.rpm
+    sha256: 8b30b838b4f8ccf3f08e1fe39f9d93deda36c3063af4060bfe2acc9baf9f0d53
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.39.*
+    - libpwquality-el10-aarch64 ==1.4.5 *_{{ build_number }}
+    - cracklib-devel-el10-aarch64 >=2.9.11 *_{{ build_number }}
+    - pam-devel-el10-aarch64 >=1.6.1 *_{{ build_number }}  # [with_pam]
+
+test:
+  requires:
+    - pkg-config
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/include/pwquality.h
+    - test -f ${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/lib64/libpwquality.so
+    - export PKG_CONFIG_PATH=${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/lib64/pkgconfig
+    - pkg-config --cflags pwquality
+
+about:
+  home: https://github.com/libpwquality/libpwquality/
+  license: BSD-3-Clause or GPL-2.0-only  # BSD-3-Clause OR GPL-2.0-or-later
+  license_family: Other
+  license_file:
+    - COPYING
+  summary: (CDT) Support for development of applications using the libpwquality library
+  description: |
+    Files needed for development of applications using the libpwquality
+    library.
+    See the pwquality.h header file for the API.
+  doc_url: https://github.com/libpwquality/libpwquality/
+  dev_url: https://github.com/libpwquality/libpwquality/
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts

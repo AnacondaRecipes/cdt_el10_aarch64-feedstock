@@ -1,0 +1,50 @@
+package:
+  name: cracklib-dicts-el10-aarch64
+  version: 2.9.11
+
+source:
+  - url: https://download.rockylinux.org/vault/rocky/10.0/BaseOS/aarch64/os/Packages/c/cracklib-dicts-2.9.11-8.el10.aarch64.rpm
+    sha256: 225a2a157cf6f261e763df2710fbe557b15092548330f1586ce0cb378b4023af
+    no_hoist: true
+    folder: binary
+
+build:
+  skip: True  # [not (linux and aarch64)]
+  number: {{ build_number }}
+  noarch: generic
+  binary_relocation: false
+  detect_binary_files_with_prefix: false
+
+requirements:
+  host:
+  run:
+    - sysroot_linux-aarch64 2.39.*
+    - cracklib-el10-aarch64 ==2.9.11 *_{{ build_number }}
+
+test:
+  commands:
+    - test -f ${PREFIX}/aarch64-conda_el10-linux-gnu/sysroot/usr/lib64/cracklib_dict.pwd
+
+# The license isn't maintained in the code base but the original
+# development site, https://sourceforge.net/projects/cracklib/,
+# suggests LGPL-2.0
+about:
+  home: https://github.com/cracklib/cracklib
+  license: LGPL-2.0-only  # LGPL-2.1-or-later
+  license_family: LGPL
+  license_file:
+    - LGPL-2.0-only
+  summary: (CDT) The standard CrackLib dictionaries
+  description: |
+    The cracklib-dicts package includes the CrackLib dictionaries.
+    CrackLib will need to use the dictionary appropriate to your system,
+    which is normally put in /usr/share/dict/words. Cracklib-dicts also
+    contains the utilities necessary for the creation of new dictionaries.
+
+    If you are installing CrackLib, you should also install cracklib-dicts.
+  doc_url: https://github.com/cracklib/cracklib
+  dev_url: https://github.com/cracklib/cracklib
+
+extra:
+  recipe-maintainers:
+    - conda-forge/help-cdts
