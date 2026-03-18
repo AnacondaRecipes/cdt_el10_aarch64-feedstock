@@ -27,7 +27,6 @@ requirements:
     - xorg-libxtst
   run:
     - sysroot_linux-aarch64 2.39.*
-    - copy-jdk-configs-el10-aarch64 >=4.1 *_{{ build_number }}
     - javapackages-filesystem-el10-aarch64 >=6.4.0 *_{{ build_number }}
     - ca-certificates
     - xorg-libx11
