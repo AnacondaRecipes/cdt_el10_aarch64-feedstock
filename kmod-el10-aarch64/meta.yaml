@@ -26,8 +26,10 @@ requirements:
     - kmod-libs-el10-aarch64 ==31 *_{{ build_number }}
     - libgcc-ng
     - libxcrypt-el10-aarch64 >=4.4.36 *_{{ build_number }}
+    - openssl 3
     - xz
     - zlib
+    - zstd
 
 test:
   commands:

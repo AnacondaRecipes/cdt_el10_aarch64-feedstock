@@ -25,7 +25,7 @@ requirements:
     - sysroot_linux-aarch64 2.39.*
     - cracklib-el10-aarch64 >=2.9.11 *_{{ build_number }}
     - cracklib-dicts-el10-aarch64 >=2.9.11 *_{{ build_number }}
-    - pam-el10-aarch64 >=1.6.1 *_{{ build_number }}  # [with_pam]
+    - pam-libs-el10-aarch64 >=1.6.1 *_{{ build_number }}
 
 test:
   commands:

@@ -20,8 +20,6 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.39.*
     - libpwquality-el10-aarch64 ==1.4.5 *_{{ build_number }}
-    - cracklib-devel-el10-aarch64 >=2.9.11 *_{{ build_number }}
-    - pam-devel-el10-aarch64 >=1.6.1 *_{{ build_number }}  # [with_pam]
 
 test:
   requires:

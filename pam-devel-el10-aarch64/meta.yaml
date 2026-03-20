@@ -18,12 +18,8 @@ build:
 requirements:
   host:
   run:
-    - pam-el10-aarch64 ==1.6.1 *_{{ build_number }}
-    - audit-libs-devel-el10-aarch64 >=4.0.3 *_{{ build_number }}
-    - libpwquality-devel-el10-aarch64 >=1.4.5 *_{{ build_number }}
-    - libselinux-devel-el10-aarch64 >=3.8 *_{{ build_number }}
-    - libtirpc-devel-el10-aarch64 >=1.3.5 *_{{ build_number }}
-    - libxcrypt-devel-el10-aarch64 >=4.4.36 *_{{ build_number }}
+    - sysroot_linux-aarch64 2.39.*
+    - pam-libs-el10-aarch64 >=1.6.1 *_{{ build_number }}
 
 test:
   commands:
