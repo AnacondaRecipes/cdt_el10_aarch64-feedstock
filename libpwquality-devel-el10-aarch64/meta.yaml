@@ -18,8 +18,8 @@ build:
 requirements:
   host:
   run:
-    - sysroot_linux-aarch64 2.39.*
     - libpwquality-el10-aarch64 ==1.4.5 *_{{ build_number }}
+    - pkgconfig
 
 test:
   requires:

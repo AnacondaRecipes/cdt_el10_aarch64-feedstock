@@ -20,6 +20,7 @@ requirements:
   run:
     - sysroot_linux-aarch64 2.39.*
     - libcap-ng-el10-aarch64 ==0.8.4 *_{{ build_number }}
+    - pkgconfig
 
 test:
   commands:

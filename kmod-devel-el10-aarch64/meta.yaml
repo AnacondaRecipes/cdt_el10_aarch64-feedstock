@@ -18,9 +18,7 @@ build:
 requirements:
   host:
   run:
-    - sysroot_linux-aarch64 2.39.*
     - kmod-libs-el10-aarch64 ==31 *_{{ build_number }}
-    - libxcrypt-devel-el10-aarch64 >=4.4.36 *_{{ build_number }}
 
 test:
   requires:
