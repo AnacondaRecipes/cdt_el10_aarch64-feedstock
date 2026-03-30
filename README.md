@@ -25,14 +25,6 @@ In both cases, from the feedstock directory:
   This needs to be run on a platform with the `pbp-cli` installed and
   you can subsequently create the PBP graph from `pbp.yaml`.
 
-There is a legacy script, `conda-build-all` which iterates through the
-CDTs building them in order:
-
-``` bash
-$ ./cdt_el8_x86_64/conda-build-all [-c {sysroot-staging-channel}]
-...
-```
-
 >[!TIP]
 > The recipes skip anything not `linux-64` so you will want to run
 > such a (Docker) instance.
@@ -303,8 +295,8 @@ Using such a script,
 in the context of a build we might:
 
 ``` bash
-$ cd /path/to/aggregate
-$ ./cdt_el8_x86_64/conda-build-all [-c {sysroot-staging-channel}]
+$ cd /path/to/aggregate/cdt_el8_x86_64
+$ /path/to/cdt-build-order.py --log=info --conda-build
 ...
 $ cd /path/to/conda-bld/noarch
 $ /path/to/cdt-report-library-dependencies *-el8-x86_64*
@@ -394,7 +386,6 @@ should take care of the rest.
 
 ``` bash
 mkdir cdt_el9_x86_64
-cp cdt_el9_aarch64/{conda-build-all,update.py,README.md} cdt_el9_x86_64
 (cd cdt_el9_aarch64; tar cf - *) | (cd cdt_el9_x86_64; tar xf -)
 cd cdt_el9_x86_64
 for x in *-aarch64; do mv $x ${x/aarch64/x86_64} ; done
